@@ -1,37 +1,28 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerShooter : MonoBehaviour
+public class Player_Shooter : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Camera playerCamera;
     [SerializeField] private InputActionAsset inputActions;
-    [SerializeField] private float range = 100f;
+
+    [Header("Shooting")]
     [SerializeField] private float fireRate = 5f;
+    [SerializeField] private float range = 100f;
 
     private InputAction fireAction;
     private float nextFireTime;
 
     private void Awake()
     {
-        Debug.Log("Shooter Awake");
-
-        if (inputActions == null)
-        {
-            Debug.LogError("InputActions asset is NOT assigned!");
-            return;
-        }
-
         var playerMap = inputActions.FindActionMap("Player", true);
         fireAction = playerMap.FindAction("Fire", true);
-
-        Debug.Log("Found map: " + playerMap.name);
-        Debug.Log("Found action: " + fireAction.name);
     }
 
     private void OnEnable()
     {
         fireAction?.Enable();
-        Debug.Log("Fire action enabled");
     }
 
     private void OnDisable()
@@ -44,9 +35,8 @@ public class PlayerShooter : MonoBehaviour
         if (fireAction == null)
             return;
 
-        if (fireAction.triggered && Time.time >= nextFireTime)
+        if (fireAction.IsPressed() && Time.time >= nextFireTime)
         {
-            Debug.Log("FIRE TRIGGERED");
             Shoot();
             nextFireTime = Time.time + (1f / fireRate);
         }
@@ -54,12 +44,6 @@ public class PlayerShooter : MonoBehaviour
 
     private void Shoot()
     {
-        if (playerCamera == null)
-        {
-            Debug.LogError("Player camera is NOT assigned!");
-            return;
-        }
-
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         if (Physics.Raycast(ray, out RaycastHit hit, range))
@@ -69,7 +53,6 @@ public class PlayerShooter : MonoBehaviour
         }
         else
         {
-            Debug.Log("Miss");
             Debug.DrawRay(ray.origin, ray.direction * range, Color.white, 1f);
         }
     }
