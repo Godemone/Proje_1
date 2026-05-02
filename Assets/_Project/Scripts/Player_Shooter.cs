@@ -10,6 +10,9 @@ public class Player_Shooter : MonoBehaviour
     [Header("Shooting")]
     [SerializeField] private float fireRate = 5f;
     [SerializeField] private float range = 100f;
+    [SerializeField] private float damage = 25f;
+    
+    [SerializeField] private LayerMask hitLayers;
 
     private InputAction fireAction;
     private float nextFireTime;
@@ -46,9 +49,17 @@ public class Player_Shooter : MonoBehaviour
     {
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-        if (Physics.Raycast(ray, out RaycastHit hit, range))
+        if (Physics.Raycast(ray, out RaycastHit hit, range, hitLayers))
         {
             Debug.Log("Hit: " + hit.collider.name);
+
+            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
+
+            if (damageable != null)
+            {
+                damageable.TakeDamage(damage);
+            }
+
             Debug.DrawLine(ray.origin, hit.point, Color.red, 1f);
         }
         else
