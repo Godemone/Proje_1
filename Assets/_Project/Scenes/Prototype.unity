@@ -286,7 +286,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 078ae5fcda951874f9fba075602d9974, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   maxHealth: 100
 --- !u!1 &133160227
 GameObject:
@@ -667,6 +667,7 @@ GameObject:
   - component: {fileID: 386220495}
   - component: {fileID: 386220494}
   - component: {fileID: 386220493}
+  - component: {fileID: 386220496}
   m_Layer: 0
   m_Name: TriggerZone
   m_TagString: Untagged
@@ -767,6 +768,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 386220491}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &386220496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386220491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbd4256f2a8278e43b8404e91212838b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Combat_Room
+  triggerZone: {fileID: 386220493}
+  doors:
+  - {fileID: 1005661057}
+  - {fileID: 133160227}
+  enemies:
+  - {fileID: 56521112}
+  - {fileID: 1448578596}
+  - {fileID: 675453987}
 --- !u!1 &675453979
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +802,7 @@ GameObject:
   - component: {fileID: 675453984}
   - component: {fileID: 675453983}
   - component: {fileID: 675453982}
-  - component: {fileID: 675453981}
+  - component: {fileID: 675453987}
   m_Layer: 7
   m_Name: Enemy3
   m_TagString: Untagged
@@ -804,19 +825,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2100791586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &675453981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675453979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 078ae5fcda951874f9fba075602d9974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 100
 --- !u!114 &675453982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,6 +944,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 675453979}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &675453987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675453979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078ae5fcda951874f9fba075602d9974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
+  maxHealth: 100
 --- !u!1 &684762076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,7 +1564,7 @@ GameObject:
   - component: {fileID: 1448578593}
   - component: {fileID: 1448578592}
   - component: {fileID: 1448578591}
-  - component: {fileID: 1448578590}
+  - component: {fileID: 1448578596}
   m_Layer: 7
   m_Name: Enemy2
   m_TagString: Untagged
@@ -1566,19 +1587,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2100791586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1448578590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448578588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 078ae5fcda951874f9fba075602d9974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 100
 --- !u!114 &1448578591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,6 +1706,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448578588}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1448578596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448578588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 078ae5fcda951874f9fba075602d9974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
+  maxHealth: 100
 --- !u!1 &1558516656
 GameObject:
   m_ObjectHideFlags: 0

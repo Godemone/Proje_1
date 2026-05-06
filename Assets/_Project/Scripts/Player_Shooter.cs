@@ -11,14 +11,22 @@ public class Player_Shooter : MonoBehaviour
     [SerializeField] private float fireRate = 5f;
     [SerializeField] private float range = 100f;
     [SerializeField] private float damage = 25f;
-    
     [SerializeField] private LayerMask hitLayers;
+
+    [Header("Ammo")]
+    [SerializeField] private int maxAmmo = 30;
 
     private InputAction fireAction;
     private float nextFireTime;
+    private int currentAmmo;
+
+    public int CurrentAmmo => currentAmmo;
+    public int MaxAmmo => maxAmmo;
 
     private void Awake()
     {
+        currentAmmo = maxAmmo;
+
         var playerMap = inputActions.FindActionMap("Player", true);
         fireAction = playerMap.FindAction("Fire", true);
     }
@@ -47,6 +55,14 @@ public class Player_Shooter : MonoBehaviour
 
     private void Shoot()
     {
+        if (currentAmmo <= 0)
+        {
+            Debug.Log("No ammo");
+            return;
+        }
+
+        currentAmmo--;
+
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
         if (Physics.Raycast(ray, out RaycastHit hit, range, hitLayers))
@@ -66,5 +82,11 @@ public class Player_Shooter : MonoBehaviour
         {
             Debug.DrawRay(ray.origin, ray.direction * range, Color.white, 1f);
         }
+    }
+
+    public void AddAmmo(int amount)
+    {
+        currentAmmo += amount;
+        currentAmmo = Mathf.Clamp(currentAmmo, 0, maxAmmo);
     }
 }
