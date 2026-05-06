@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IDamageable
+public class Enemy_Health : MonoBehaviour, IDamageable
 {
+    public event Action<Enemy_Health> OnEnemyDied;
+
+    [Header("Health")]
     [SerializeField] private float maxHealth = 100f;
 
     private float currentHealth;
+    private bool isDead;
 
     private void Awake()
     {
@@ -13,9 +18,13 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
+        if (isDead)
+            return;
 
-        if (currentHealth <= 0)
+        currentHealth -= amount;
+        Debug.Log($"{gameObject.name} took {amount} damage. HP: {currentHealth}");
+
+        if (currentHealth <= 0f)
         {
             Die();
         }
@@ -23,6 +32,15 @@ public class EnemyHealth : MonoBehaviour, IDamageable
 
     private void Die()
     {
+        if (isDead)
+            return;
+
+        isDead = true;
+
+        Debug.Log($"{gameObject.name} died.");
+
+        OnEnemyDied?.Invoke(this);
+
         Destroy(gameObject);
     }
 }
