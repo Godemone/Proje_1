@@ -18,6 +18,11 @@ public class Player_Controller : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 0.1f;
     [SerializeField] private float maxLookAngle = 80f;
 
+    [Header("Camera Recoil")]
+    [SerializeField] private float recoilReturnSpeed = 10f;
+
+    private float cameraRecoil;
+
     private InputAction moveAction;
     private InputAction lookAction;
     private InputAction jumpAction;
@@ -67,6 +72,7 @@ public class Player_Controller : MonoBehaviour
     {
         HandleLook();
         HandleMovement();
+        cameraRecoil = Mathf.Lerp(cameraRecoil, 0f, Time.deltaTime * recoilReturnSpeed);
     }
 
     private void HandleLook()
@@ -79,7 +85,7 @@ public class Player_Controller : MonoBehaviour
         cameraPitch -= mouseY;
         cameraPitch = Mathf.Clamp(cameraPitch, -maxLookAngle, maxLookAngle);
 
-        cameraTransform.localRotation = Quaternion.Euler(cameraPitch, 0f, 0f);
+        cameraTransform.localRotation = Quaternion.Euler(cameraPitch - cameraRecoil, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
 
@@ -102,5 +108,9 @@ public class Player_Controller : MonoBehaviour
         velocity.y = verticalVelocity;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+    public void AddCameraRecoil(float amount)
+    {
+        cameraRecoil += amount;
     }
 }

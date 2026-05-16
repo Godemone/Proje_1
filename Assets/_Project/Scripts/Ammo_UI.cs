@@ -12,6 +12,6 @@ public class Ammo_UI : MonoBehaviour
         if (shooter == null || ammoText == null)
             return;
 
-        ammoText.text = shooter.CurrentAmmo + " / " + shooter.MaxAmmo;
+        ammoText.text = shooter.CurrentAmmo + " / " + shooter.MaxAmmo + " | " + shooter.ReserveAmmo;
     }
 }

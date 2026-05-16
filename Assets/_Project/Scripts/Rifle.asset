@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fcb50a61866ef4aa9267bbe42c8336, type: 3}
+  m_Name: Rifle
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: Rifle
+  damage: 25
+  fireRate: 7
+  range: 120
+  magazineSize: 30
+  reserveAmmo: 120
+  reloadTime: 1.7
+  recoilKickBack: 0.035
+  recoilKickUp: 1.2
+  recoilReturnSpeed: 14
+  cameraRecoilAmount: 0.45
+  baseSpread: 0.0015
+  maxSpread: 0.02
+  spreadIncreasePerShot: 0.003
+  spreadRecoverySpeed: 6
+  muzzleFlashTime: 0.03

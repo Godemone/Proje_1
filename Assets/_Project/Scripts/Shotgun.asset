@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86fcb50a61866ef4aa9267bbe42c8336, type: 3}
+  m_Name: Shotgun
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  weaponName: Shotgun
+  damage: 70
+  fireRate: 1
+  range: 35
+  magazineSize: 6
+  reserveAmmo: 36
+  reloadTime: 2.4
+  recoilKickBack: 0.09
+  recoilKickUp: 5
+  recoilReturnSpeed: 9
+  cameraRecoilAmount: 2.2
+  baseSpread: 0.035
+  maxSpread: 0.08
+  spreadIncreasePerShot: 0.015
+  spreadRecoverySpeed: 4
+  muzzleFlashTime: 0.07
